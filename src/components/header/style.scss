@@ -1,0 +1,74 @@
+@import "../../styles/mixin.scss";
+
+.header {
+  margin: 0 auto;
+  max-width: 1118px;
+  display: flex;
+  padding: 25px 0px;
+  background: $bgWhiteColor;
+  justify-content: space-between;
+}
+
+.header__play {
+  font-family: "Rubik-Medium";
+  font-size: 20px;
+  position: relative;
+  margin-left: 53px;
+  &::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -51px;
+    height: 70px;
+    width: 50px;
+    background: url("../../assets/svg/Play.svg") no-repeat;
+  }
+}
+
+
+.header__search-input {
+  width: 320px;
+}
+
+.header__search-button {
+  color: $bglighterRed;
+  font-family: "Rubik-Medium";
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.header__tvORfilms-wrapper {
+  display: flex;
+  justify-content: center;
+  font-family: "Rubik-Medium";
+  font-size: 28px;
+  margin-top: 48px;
+}
+
+.header__tvORfilms {
+  margin-left: 20px;
+  cursor: pointer;
+  margin-bottom: 32px;
+  &.header__tvORfilms_active {
+    color: $bglighterRed;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 35px;
+      border-bottom: 2px solid $bglighterRed;
+      width: 100%;
+    }
+  }
+}
+
+.header__exit {
+  color: $bglighterRed;
+  font-family: "Rubik-Medium";
+  cursor: pointer;
+}
+
+.header__nik {
+  color: rgba(51, 51, 51, 1);
+  margin-right: 15px;
+}

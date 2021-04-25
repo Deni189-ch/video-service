@@ -1,0 +1,13 @@
+@import '../../styles//mixin.scss';
+
+.footer {
+  margin: 0 auto;
+  max-width: 1118px;
+  display: flex;
+  padding: 25px 0px;
+  background: $bgFooterContent;
+}
+
+.footer__logo-wrapper {
+  margin-right: 40px;
+}

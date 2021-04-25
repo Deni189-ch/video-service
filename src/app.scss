@@ -1,0 +1,13 @@
+@import './styles/mixin.scss';
+
+.not-found {
+  margin: 0 auto;
+  max-width: 1118px;
+  background: $bgWhiteColor;
+  height: 70vh;
+  padding-bottom: 90px;
+  font-size: 40px;
+  font-family: 'Rubik-Medium';
+  text-align: center;
+  padding-top: 100px;
+}

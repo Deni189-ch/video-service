@@ -1,0 +1,34 @@
+@import "../../styles/mixin.scss";
+
+.TV {
+  margin: 0 auto;
+  max-width: 1118px;
+  background: $bgWhiteColor;
+  padding-bottom: 90px;
+  height: 69vh;
+  overflow: auto;
+}
+
+.tv__print-channels {
+  min-height: 162px;
+  background: $bgFooterContent;
+  display: flex;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.tv__leftCol {
+  width: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tv__title {
+  font-family: 'Rubik-Medium';
+  font-size: 20px;
+}
+
+.tv__time-programs {
+  margin: 8px 0;
+}

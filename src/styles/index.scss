@@ -1,0 +1,38 @@
+@import "./mixin.scss";
+@import "../assets/fonts/fonts.scss";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $bgBody;
+  font: 16px 'Roboto-Regular', sans-serif;
+}
+
+.btn {
+    font-family: "Rubik-Medium";
+    color: $bgWhiteColor;
+    background: $bglighterRed;
+    height: 38px;
+    width: 113px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: ease 0.5s;
+    &:hover {
+      background: $bgDarkRed;
+    }
+  }
+
+.input {
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #333333;
+}
+

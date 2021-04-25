@@ -1,0 +1,1 @@
+export const GET_DEFALT_FILMS = 'GET_DEFALT_FILMS';

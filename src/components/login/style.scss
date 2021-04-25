@@ -1,0 +1,53 @@
+@import "../../styles/mixin.scss";
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #333333bf;
+  z-index: 100;
+}
+
+.login__modal {
+  padding: 50px 20px 30px;
+  width: 304px;
+  height: 394px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+  z-index: 110;
+  overflow: hidden;
+}
+
+.login__title {
+  font-size: 28px;
+  font-family: "Rubik-Medium";
+  text-align: center;
+}
+
+.login__input-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.login__checkbox-wrapper {
+  margin: -10px 0 90px 15px;
+}
+
+.login__inputLogin {
+  width: 232px;
+}
+
+.login__inputCheckbox {
+  height: 16px;
+  width: 16px;
+}
+
+.login__btn {
+  margin: 0 auto;
+}

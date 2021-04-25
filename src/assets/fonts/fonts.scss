@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Roboto-Regular';
+  font-weight: 400;
+  font-style: normal;
+  src: local('Roboto-Regular'), local('Roboto-Regular'),
+    url('./Rubik-Regular.woff') format('woff'),
+    url('./Rubik-Regular.woff2') format('woff2'),
+};
+
+@font-face {
+  font-family: 'Rubik-Medium';
+  font-weight: 500;
+  font-style: normal;
+  src: local('Rubik-Medium'), local('Rubik-Medium'),
+    url('./Rubik-Medium.woff') format('woff'),
+    url('./Rubik-Medium.woff2') format('woff2'),
+};
