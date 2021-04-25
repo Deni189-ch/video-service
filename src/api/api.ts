@@ -6,6 +6,9 @@ const instance = axios.create({
 });
 
 
+// postComment(imgId, comments ) {
+//   return instance.post(`/${imgId}/comments`, {...comments})
+
 export const searchAPI = {
   getFilms() {
       return instance.get()
@@ -13,8 +16,20 @@ export const searchAPI = {
   //   getImgBig(imgId) {
   //     return instance.get(`/${imgId}`)
   //   },
-  postSearch(comments: string) {
-    debugger
-    return instance.post(`/${1}/comments`, { comments });
+  postSearch(id: number, comments: any) {
+    //debugger
+    return instance.post(`/${id}/comments`, { ...comments });
+  },
+};
+
+
+//@ts-ignore
+const instanceAuth = axios.create({
+  baseURL: "https://reqres.in/api/",
+});
+
+export const AuthAPI = {
+  postAuth(email: string, password: string) {
+    return instanceAuth.post(`register`, { email, password });
   },
 };

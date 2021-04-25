@@ -4,6 +4,8 @@ import { getDefaltFilms } from '../../redux/actions';
 import { Carusel } from './Carusel';
 import { CaruselGenres } from './Сarousel-genres';
 import './style.scss';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 const Films: React.FC = () => {
 
@@ -32,3 +34,4 @@ const Films: React.FC = () => {
 }
 
 export default Films;
+//export default compose(withAuthRedirect)(Films);

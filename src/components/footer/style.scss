@@ -1,11 +1,21 @@
 @import '../../styles//mixin.scss';
 
+.footer__interlayer {
+  height: 60px;
+  background: $bgWhiteColor;
+  margin: 0 auto;
+  max-width: 1118px;
+}
 .footer {
+  background: $bgFooterContent;
+}
+
+.footer-wrapper {
   margin: 0 auto;
   max-width: 1118px;
   display: flex;
   padding: 25px 0px;
-  background: $bgFooterContent;
+  //background: $bgFooterContent;
 }
 
 .footer__logo-wrapper {

@@ -12,7 +12,6 @@ function App() {
   const history = useHistory();
 
   const RedirectFn = (path: string) => { 
-    debugger
     history.push(path)
    };
 
@@ -21,7 +20,7 @@ function App() {
  
   return (
     <div className="App">
-      <Header RedirectFn={RedirectFn} />
+      <Header  />
       <Suspense fallback={<div>Загрузка...</div>}>
         <Switch>
           
@@ -29,7 +28,7 @@ function App() {
 
           <Route path="/films" component={FilmsContainer} />
 
-          <Route path="/login" render={() => <Login RedirectFn={RedirectFn} /> } />
+          {/* <Route path="/login" render={() => <Login RedirectFn={RedirectFn} /> } /> */}
 
 
           <Route exact path="/" render={() => <Redirect to="/chennels" />} />

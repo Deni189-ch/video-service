@@ -1,18 +1,12 @@
 import React, {
   ChangeEvent,
-  ChangeEventHandler,
-  useEffect,
   useState,
 } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router";
+import { postAuthMe } from "../../redux/actions";
 import "./style.scss";
 
-interface ILogin {
-  RedirectFn: (value: string) => void
-}
-
-export const Login: React.FC<ILogin> = ({ RedirectFn }) => {
+export const Login: React.FC<any> = ( ) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
     login: "" as any,
@@ -22,29 +16,19 @@ export const Login: React.FC<ILogin> = ({ RedirectFn }) => {
 
   const { login, password, remembeMe } = data;
 
-  useEffect(() => {
-    const dataObj = { login: "admin", password: "free", remembeMe: "false" };
-    localStorage.setItem("dataLocal", JSON.stringify(dataObj));
-  }, []);
-
   const changeForm = (e: ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, ...{ [e.target.name]: e.target.value.trim() } });
   };
-  //@ts-ignore
-  const dataLocal = JSON.parse(localStorage.getItem("dataLocal"));
 
   const handleSubmit = () => {
-
-    if (login === dataLocal.login && password === dataLocal.password) {
-      localStorage.setItem("isAuth", "true");
-    }
+    if ( login && password )  dispatch(postAuthMe(login, password))
   };
 
-  //@ts-ignore
-  const isAuth = JSON.parse(localStorage.getItem("isAuth"));
-  if (isAuth) {
-    RedirectFn("/chennels");
-  }
+  const onKyeDownHandler = ({ keyCode }: any) => {
+    keyCode === 13 && handleSubmit();
+  };
+
+ 
 
   return (
     <div className="login">
@@ -66,6 +50,7 @@ export const Login: React.FC<ILogin> = ({ RedirectFn }) => {
             placeholder="Пароль"
             className="login__inputLogin input"
             onChange={changeForm}
+            onKeyDown={onKyeDownHandler}
           />
         </div>
         <div className="login__checkbox-wrapper">
@@ -73,10 +58,10 @@ export const Login: React.FC<ILogin> = ({ RedirectFn }) => {
             name="remembeMe"
             type="checkbox"
             className="login__inputCheckbox"
-            onChange={changeForm}
+            onChange={changeForm}            
           />
         </div>
-        <div className="login__btn btn" onClick={handleSubmit}>
+        <div className="login__btn btn" onClick={handleSubmit} >
           Войти
         </div>
       </div>

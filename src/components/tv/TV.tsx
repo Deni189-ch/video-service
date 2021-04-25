@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { IDefaltTV } from "../../redux/TVChanels-reducer copy";
 import "./style.scss";
 
@@ -44,3 +46,4 @@ export const TV: React.FC = () => {
   );
 };
 
+//export default compose(withAuthRedirect)(TV);
