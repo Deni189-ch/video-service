@@ -54,8 +54,6 @@ export const TVChannelsReducer = (state = initialState, action: any) => {
 
     case GET_DEFALT_FILMS:
       return { ...state, defaltFilms: action.payload };
-
-
     
     default:
       return state;

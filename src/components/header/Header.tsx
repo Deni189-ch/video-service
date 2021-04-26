@@ -1,101 +1,79 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
-import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import React, { ChangeEvent } from "react";
+import { NavLink } from "react-router-dom";
 
-import {
-  setNewSearchAC,
-  setIsAuthAC,
-  setExitUserAC,
-  setNewUserName,
-  setIsNewName,
-  setLocalUserName,
-} from "../../redux/actions";
-import { Login } from "../login/Login";
+import { LoginContainer } from "../login/Login-Container";
 import "./style.scss";
 
-// interface IHeader {
-//   RedirectFn: (value: string) => void;
-// }
+interface IHeader {
+  isAuth: any;
+  userID: any;
+  isNewName: any;
+  searchValue: string;
+  TVorFilms: string;
+  newName: string;
+  onSearchChange: (value: any) => void;
+  onSearchHandler: () => void;
+  onsearchKyeDownHandler: (keyCode: number) => void;
+  onFilmsHandler: () => void;
+  onTVHandler: () => void;
+  onNewNameChange: (value: string) => void;
+  onSetNewRename: () => void;
+  onGetRenameHandler: (keyCode: number) => void;
+  onRenameHandler: () => void;
+  onExitHandler: () => void;
+  onEnterHandler: () => void;
+}
 
-export const Header: React.FC = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [TVorFilms, setTVorFilms] = useState<"tv" | "films">("tv");
-
-  const [newName, setNewName] = useState<string>("");
-
-  const isAuth = useSelector(({ search }: any) => search.isAuth);
-  const userID = useSelector(({ search }: any) => search.userID);
-  const isNewName = useSelector(({ search }: any) => search.isNewName);
-
-  useEffect(() => {
-    userID && userID.token && setNewName(userID.token);
-    userID && userID.token && localStorage.setItem("DatesLocal", JSON.stringify(userID));
-  }, [userID]);
-
-  useEffect(() => {
-    const AuthMe = localStorage.getItem("DatesLocal");
-    const dates = AuthMe && JSON.parse(AuthMe);
-    console.log('DatesLocal', dates);
-    
-    dates && dispatch(setLocalUserName(dates));
-  }, []);
-
-  console.log(userID);
-
-  const inputEl = useRef(null);
-  const history = useHistory();
-  const dispatch = useDispatch();
-
+export const Header: React.FC<IHeader> = ({
+  isAuth,
+  userID,
+  isNewName,
+  onSearchChange,
+  onSearchHandler,
+  onsearchKyeDownHandler,
+  searchValue,
+  onFilmsHandler,
+  onTVHandler,
+  TVorFilms,
+  onNewNameChange,
+  onSetNewRename,
+  newName,
+  onGetRenameHandler,
+  onRenameHandler,
+  onExitHandler,
+  onEnterHandler,
+}) => {
+  
   const searchChange = ({
     currentTarget: { value },
   }: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(value);
+    onSearchChange(value);
   };
 
-  const searchHandler = () => {
-    searchValue && dispatch(setNewSearchAC(239, {name: 'defalts', comment: searchValue,}));
-    setSearchValue('')
-  };
-
+  const searchHandler = () => onSearchHandler();
   const searchKyeDownHandler = ({ keyCode }: any) => {
-    keyCode === 13 && searchHandler();
+    onsearchKyeDownHandler(keyCode);
   };
 
-  const filmsHandler = () => setTVorFilms("films");
-  const TVHandler = () => setTVorFilms("tv");
+  const filmsHandler = () => onFilmsHandler();
+  const TVHandler = () => onTVHandler();
 
-  const enterHandler = () => {
-    dispatch(setIsAuthAC(true));
-  };
+  const enterHandler = () => onEnterHandler();
+  const exitHandler = () => onExitHandler();
 
-  const exitHandler = () => {
-    dispatch(setExitUserAC(null));
-    localStorage.setItem("DatesLocal", JSON.stringify(null));
-  };
-
-  const renameHandler = () => {
-    dispatch(setIsNewName(true));
-  };
-
+  const renameHandler = () => onRenameHandler();
   const newNameChange = ({
     currentTarget: { value },
   }: ChangeEvent<HTMLInputElement>) => {
-    setNewName(value);
+    onNewNameChange(value);
   };
 
-  const getRenameHandler = ({ keyCode }: any) => {
-    keyCode === 13 && setNewRename();
-  };
-
-  const setNewRename = () => {
-    dispatch(setNewUserName(newName));
-  };
+  const getRenameHandler = ({ keyCode }: any) => onGetRenameHandler(keyCode);
+  const setNewRename = () => onSetNewRename();
 
   return (
     <div className="header">
-      {isAuth && <Login />}
+      {isAuth && <LoginContainer />}
       <div className="header__play">Видеосервис</div>
 
       <div className="header__search">
@@ -164,5 +142,5 @@ export const Header: React.FC = () => {
     </div>
   );
 };
-export default Header
-// export default compose(withAuthRedirect)(Header);
+
+export default Header;

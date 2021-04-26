@@ -1,18 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { IDefaltTV } from "../../redux/TVChanels-reducer copy";
 import "./style.scss";
 
-// interface IChennels {
-//   defaltTV: Array<IDefaltTV>
-// }
-
-export const TV: React.FC = () => {
-  const defaltTV = useSelector(({ channels }: any) => channels.defaltTV);
-  console.log(defaltTV);
-
+interface ITV {
+  defaltTV: any;
+}
+export const TV: React.FC<ITV> = ({ defaltTV }) => {
   return (
     <div className="TV">
       {defaltTV &&
@@ -45,5 +37,3 @@ export const TV: React.FC = () => {
     </div>
   );
 };
-
-//export default compose(withAuthRedirect)(TV);

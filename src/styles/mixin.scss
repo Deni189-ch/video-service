@@ -6,10 +6,9 @@ $bglighterRed: rgba(229, 38, 30, 1);
 $bgDarkRed: rgba(204, 34, 27, 1);
 $bgColotTitle: rgba(51, 51, 51, 1);
 
-//  'Rubik-Medium';
-//  'Roboto-Regular';
 
-@mixin adaptive($device) {
+
+@mixin adaptive($device) { //не делал, так как карусели рукописные
 
   @if ($device == smartfon) {
     @media (max-width: 450px) {

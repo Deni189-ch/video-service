@@ -6,6 +6,7 @@ import {
   SET_NEW_USER_ID,
   IS_NEW_NAME,
   SET_LOCAL_USER_ID,
+  IS_REMEMBE_ME,
 } from "./types";
 import {
   Rectangle,
@@ -27,15 +28,17 @@ export interface IGenres {
 export interface ISearchState {
   isAuth: boolean;
   isNewName: boolean;
+  isRemembeMe: boolean;
   userID: any; ///{id: number, token: string} | null
   defaltFilms: Array<IFilms | null>;
   newTVorFilm: Array<IFilms | null>;
   genres: Array<IGenres>;
 }
 
-const initialState: ISearchState = {
+export const initialState: ISearchState = {
   isAuth: false,
   isNewName: false,
+  isRemembeMe: false,
   userID: null,
   defaltFilms: [],
   newTVorFilm: [],
@@ -61,6 +64,9 @@ export const searchReducer = (state = initialState, action: any) => {
 
     case IS_NEW_NAME:
       return { ...state, isNewName: action.payload };
+
+    case IS_REMEMBE_ME:
+      return { ...state, isRemembeMe: action.value };
 
     case GET_USER_ID:
       return {

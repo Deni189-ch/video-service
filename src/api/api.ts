@@ -5,10 +5,6 @@ const instance = axios.create({
     baseURL: 'https://boiling-refuge-66454.herokuapp.com/images',
 });
 
-
-// postComment(imgId, comments ) {
-//   return instance.post(`/${imgId}/comments`, {...comments})
-
 export const searchAPI = {
   getFilms() {
       return instance.get()
@@ -17,7 +13,6 @@ export const searchAPI = {
   //     return instance.get(`/${imgId}`)
   //   },
   postSearch(id: number, comments: any) {
-    //debugger
     return instance.post(`/${id}/comments`, { ...comments });
   },
 };

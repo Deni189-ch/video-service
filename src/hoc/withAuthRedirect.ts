@@ -13,7 +13,6 @@ export const withAuthRedirect = ( Component: any ) => {
       return Component
     } else {
       return history.push("/login")
-      //<Redirect to="/login" />
     }
     
   }

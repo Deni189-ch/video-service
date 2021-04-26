@@ -2,11 +2,6 @@ import React from "react";
 import { IFilms } from "../../redux/search-reducer";
 import "./style.scss";
 
-// interface defaltFilmsType {
-//   id: number;
-//   url: string;
-// }
-
 interface ICarusel {
   defaltFilms: Array<IFilms>;
 }

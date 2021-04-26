@@ -1,4 +1,4 @@
-import Header from './header/Header';
+import HeaderContainer from './header/Header-Container';
 import { Footer } from './footer/Footer';
 import { Login } from './login/Login';
 
@@ -7,7 +7,7 @@ import  { TV }  from './tv/TV';
 
 
 export {
-  Header, Footer,
+  HeaderContainer, Footer,
   Films, TV,
   Login
 }

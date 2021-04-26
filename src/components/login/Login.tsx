@@ -1,34 +1,22 @@
-import React, {
-  ChangeEvent,
-  useState,
-} from "react";
-import { useDispatch } from "react-redux";
-import { postAuthMe } from "../../redux/actions";
+import React, { ChangeEvent } from "react";
 import "./style.scss";
 
-export const Login: React.FC<any> = ( ) => {
-  const dispatch = useDispatch();
-  const [data, setData] = useState({
-    login: "" as any,
-    password: "" as any,
-    remembeMe: false as boolean,
-  });
+interface ILogin {
+  onHandleSubmit: () => void;
+  onKyeDownHandler: (keyCode: number) => void;
+  onChangeForm: (e: ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const { login, password, remembeMe } = data;
+export const Login: React.FC<ILogin> = ({
+  onKyeDownHandler,
+  onHandleSubmit,
+  onChangeForm,
+}) => {
+  const changeForm = (e: ChangeEvent<HTMLInputElement>) => onChangeForm(e);
 
-  const changeForm = (e: ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, ...{ [e.target.name]: e.target.value.trim() } });
-  };
+  const handleSubmit = () => onHandleSubmit();
 
-  const handleSubmit = () => {
-    if ( login && password )  dispatch(postAuthMe(login, password))
-  };
-
-  const onKyeDownHandler = ({ keyCode }: any) => {
-    keyCode === 13 && handleSubmit();
-  };
-
- 
+  const kyeDownHandler = ({ keyCode }: any) => onKyeDownHandler(keyCode);
 
   return (
     <div className="login">
@@ -50,7 +38,7 @@ export const Login: React.FC<any> = ( ) => {
             placeholder="Пароль"
             className="login__inputLogin input"
             onChange={changeForm}
-            onKeyDown={onKyeDownHandler}
+            onKeyDown={kyeDownHandler}
           />
         </div>
         <div className="login__checkbox-wrapper">
@@ -58,10 +46,10 @@ export const Login: React.FC<any> = ( ) => {
             name="remembeMe"
             type="checkbox"
             className="login__inputCheckbox"
-            onChange={changeForm}            
+            onChange={changeForm}
           />
         </div>
-        <div className="login__btn btn" onClick={handleSubmit} >
+        <div className="login__btn btn" onClick={handleSubmit}>
           Войти
         </div>
       </div>

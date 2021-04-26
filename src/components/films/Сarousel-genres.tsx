@@ -1,7 +1,6 @@
-import React from "react";
+import React, { ChangeEventHandler, TouchEventHandler } from "react";
 import { IGenres } from "../../redux/search-reducer";
 import "./style.scss";
-
 
 interface ICarusel {
   genres: Array<IGenres>
@@ -38,7 +37,7 @@ export const CaruselGenres: React.FC<ICarusel> = ({genres}) => {
         onTouchStart={startTouch}
         onTouchEnd={endTouch}
       >
-        {genres.map(({ id, url, title, svg }: any) => (
+        {genres.map(({ id, url, title, svg }) => (
           <div key={id}>
             <div className="genresLenta__item">
               <img className="genresLenta__item-img" src={url} alt="loading..." />
