@@ -9,12 +9,7 @@ interface IFilms {
   dispatch: any;
   getDefaltFilms: () => void;
 }
-const Films: React.FC<IFilms> = ({
-  defaltFilms,
-  genres,
-  dispatch,
-  getDefaltFilms,
-}) => {
+const Films: React.FC<IFilms> = ({ defaltFilms, genres, dispatch, getDefaltFilms }) => {
   useEffect(() => {
     dispatch(getDefaltFilms());
   }, []);

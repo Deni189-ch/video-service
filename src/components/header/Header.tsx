@@ -1,17 +1,23 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, ChangeEventHandler } from "react";
 import { NavLink } from "react-router-dom";
-
 import { LoginContainer } from "../login/Login-Container";
+
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
 import "./style.scss";
 
+const antIcon = <LoadingOutlined style={{ fontSize: 46 }} spin />;
 interface IHeader {
-  isAuth: any;
+  isAuth: boolean;
+  isNewName: boolean;
+  isSpin: boolean;
+  isDiseible: boolean
   userID: any;
-  isNewName: any;
   searchValue: string;
   TVorFilms: string;
   newName: string;
-  onSearchChange: (value: any) => void;
+  onSearchChange: (value: string) => void;
   onSearchHandler: () => void;
   onsearchKyeDownHandler: (keyCode: number) => void;
   onFilmsHandler: () => void;
@@ -26,18 +32,20 @@ interface IHeader {
 
 export const Header: React.FC<IHeader> = ({
   isAuth,
-  userID,
+  isSpin,
   isNewName,
+  isDiseible,
+  userID,
+  newName,
+  TVorFilms,
+  searchValue,
   onSearchChange,
   onSearchHandler,
   onsearchKyeDownHandler,
-  searchValue,
   onFilmsHandler,
   onTVHandler,
-  TVorFilms,
   onNewNameChange,
   onSetNewRename,
-  newName,
   onGetRenameHandler,
   onRenameHandler,
   onExitHandler,
@@ -47,10 +55,12 @@ export const Header: React.FC<IHeader> = ({
   const searchChange = ({
     currentTarget: { value },
   }: ChangeEvent<HTMLInputElement>) => {
-    onSearchChange(value);
+    if(value) onSearchChange(value);
   };
 
-  const searchHandler = () => onSearchHandler();
+  const searchHandler = () => {
+    !isDiseible && onSearchHandler();
+  } 
   const searchKyeDownHandler = ({ keyCode }: any) => {
     onsearchKyeDownHandler(keyCode);
   };
@@ -73,6 +83,7 @@ export const Header: React.FC<IHeader> = ({
 
   return (
     <div className="header">
+     {isSpin && <Spin indicator={antIcon} />}
       {isAuth && <LoginContainer />}
       <div className="header__play">Видеосервис</div>
 
@@ -85,8 +96,9 @@ export const Header: React.FC<IHeader> = ({
           onChange={searchChange}
           onClick={searchHandler}
           onKeyDown={searchKyeDownHandler}
+          disabled={isDiseible}
         />
-        <span className="header__search-button">Найти</span>
+        <span className="header__search-button" onClick={searchHandler} >Найти</span>
 
         <div className="header__tvORfilms-wrapper">
           <NavLink

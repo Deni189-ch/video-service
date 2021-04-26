@@ -7,6 +7,7 @@
   padding: 25px 0px;
   background: $bgWhiteColor;
   justify-content: space-between;
+  position: relative;
 }
 
 .header__play {
@@ -35,6 +36,9 @@
   font-family: "Rubik-Medium";
   margin-left: 30px;
   cursor: pointer;
+  &:hover {
+    color: $bgDarkRed;
+  }
 }
 
 .header__tvORfilms-wrapper {
@@ -71,6 +75,9 @@
   color: $bglighterRed;
   font-family: "Rubik-Medium";
   cursor: pointer;
+  &:hover {
+    color: $bgDarkRed;
+  }
 }
 
 .header__nik {
@@ -80,4 +87,10 @@
 
 .header__newNameInput {
   width: 124px;
+}
+
+.ant-spin-spinning {
+  left: -3px;
+  position: absolute !important;
+  top: 14px;
 }

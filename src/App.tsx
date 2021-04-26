@@ -1,18 +1,19 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { HeaderContainer, Footer, TV } from "./components/index";
-import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import "./app.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getDefaltFilms } from "./redux/actions";
+import { IFilms, IGenres, ISearchState } from "./redux/search-reducer";
 
-const Films = React.lazy(() => import("./components/films/Films"));
+const Films = lazy(() => import("./components/films/Films"));
 
 function App() {
   const dispatch = useDispatch();
 
-  const defaltFilms = useSelector(({ search }: any) => search.defaltFilms);
-  const genres = useSelector(({ search }: any) => search.genres);
+  const defaltFilms = useSelector<ISearchState, Array<IFilms | null>>(({search}:any) => search.defaltFilms);
+  const genres = useSelector<ISearchState, Array<IGenres>>(({search}:any) => search.genres);
 
   const defaltTV = useSelector(({ channels }: any) => channels.defaltTV);
 
@@ -27,23 +28,20 @@ function App() {
           path="/films"
           render={() => {
             return (
-              <React.Suspense fallback={<div>loading...</div>}>
+              <Suspense fallback={<div>loading...</div>}>
                 <Films
                   defaltFilms={defaltFilms}
                   genres={genres}
                   dispatch={dispatch}
                   getDefaltFilms={getDefaltFilms}
                 />
-              </React.Suspense>
+              </Suspense>
             );
           }}
         />
 
-        <Route exact path="/" render={() => <Redirect to="/chennels" />} />
-        <Route
-          path="*"
-          render={() => <div className="not-found">404 NOT FOUND</div>}
-        />
+        <Route exact path="/" render={() => <Redirect to="/chennels" />}/>
+        <Route path="*" render={() => <div className="not-found">404 NOT FOUND</div>}/>
       </Switch>
 
       <Footer />

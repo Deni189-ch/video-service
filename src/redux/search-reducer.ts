@@ -1,12 +1,14 @@
 import {
   GET_DEFALT_FILMS,
-  IS_AUTH,
   GET_USER_ID,
+  IS_AUTH,
+  IS_SPIN,
+  IS_NEW_NAME,
+  IS_REMEMBE_ME,
+  IS_DISEIBLE,
   EXIT_USER,
   SET_NEW_USER_ID,
-  IS_NEW_NAME,
   SET_LOCAL_USER_ID,
-  IS_REMEMBE_ME,
 } from "./types";
 import {
   Rectangle,
@@ -29,6 +31,8 @@ export interface ISearchState {
   isAuth: boolean;
   isNewName: boolean;
   isRemembeMe: boolean;
+  isSpin: boolean;
+  isDiseible: boolean;
   userID: any; ///{id: number, token: string} | null
   defaltFilms: Array<IFilms | null>;
   newTVorFilm: Array<IFilms | null>;
@@ -39,6 +43,8 @@ export const initialState: ISearchState = {
   isAuth: false,
   isNewName: false,
   isRemembeMe: false,
+  isDiseible: false,
+  isSpin: false,
   userID: null,
   defaltFilms: [],
   newTVorFilm: [],
@@ -67,6 +73,12 @@ export const searchReducer = (state = initialState, action: any) => {
 
     case IS_REMEMBE_ME:
       return { ...state, isRemembeMe: action.value };
+
+    case IS_SPIN:
+      return { ...state, isSpin: action.payload };
+
+    case IS_DISEIBLE:
+      return { ...state, isDiseible: action.payload };
 
     case GET_USER_ID:
       return {

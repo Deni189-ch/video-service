@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { Login } from "./Login";
 import "./style.scss";
 
-export const LoginContainer: React.FC<any> = () => {
+export const LoginContainer: React.FC = () => {
   const [data, setData] = useState({
-    login: "" as any,
-    password: "" as any,
+    login: "" as string,
+    password: "" as string,
     remembeMe: false as boolean,
   });
   const { login, password, remembeMe } = data;

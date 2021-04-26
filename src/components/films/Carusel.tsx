@@ -3,10 +3,10 @@ import { IFilms } from "../../redux/search-reducer";
 import "./style.scss";
 
 interface ICarusel {
-  defaltFilms: Array<IFilms>;
+  defaltFilms: any
 }
 
-export const Carusel: React.FC<ICarusel> = ({ defaltFilms }: any) => {
+export const Carusel: React.FC<ICarusel> = ({ defaltFilms }) => {
   const [position, setPosition] = React.useState(0);
 
   let x1 = 0;
@@ -38,7 +38,7 @@ export const Carusel: React.FC<ICarusel> = ({ defaltFilms }: any) => {
         onTouchStart={startTouch}
         onTouchEnd={endTouch}
       >
-        {defaltFilms.map(({ id, url }: any) => (
+        {defaltFilms.map(({ id, url }: IFilms) => (
           <div>
             <div key={id} className="filmLenta__item">
               <img className="filmLenta__item-img" src={url} alt="loading..." />

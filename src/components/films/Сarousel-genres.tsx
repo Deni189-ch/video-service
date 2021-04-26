@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, TouchEventHandler } from "react";
+import React from "react";
 import { IGenres } from "../../redux/search-reducer";
 import "./style.scss";
 
@@ -6,7 +6,7 @@ interface ICarusel {
   genres: Array<IGenres>
 }
 
-export const CaruselGenres: React.FC<ICarusel> = ({genres}) => {
+export const CaruselGenres: React.FC<ICarusel> = ({ genres }) => {
   const [position, setPosition] = React.useState(0);
 
   let x1 = 0;

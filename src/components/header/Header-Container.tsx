@@ -7,20 +7,24 @@ import {
   setNewUserName,
   setIsNewName,
   setLocalUserName,
+  setIsSpinAC,
+  setIsDisaible,
 } from "../../redux/actions";
 
 import { Header } from "./Header";
 import "./style.scss";
 
 export const HeaderContainer: React.FC = () => {
-  const [searchValue, setSearchValue] = useState<string>(""); //*
-  const [TVorFilms, setTVorFilms] = useState<"tv" | "films">("tv"); //*
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [TVorFilms, setTVorFilms] = useState<"tv" | "films">("tv");
   const [newName, setNewName] = useState<string>("");
 
   const isAuth = useSelector(({ search }: any) => search.isAuth);
-  const userID = useSelector(({ search }: any) => search.userID);
+  const isSpin = useSelector(({ search }: any) => search.isSpin);
   const isNewName = useSelector(({ search }: any) => search.isNewName);
   const isRemembeMe = useSelector(({ search }: any) => search.isRemembeMe);
+  const isDiseible = useSelector(({ search }: any) => search.isDiseible);
+  const userID = useSelector(({ search }: any) => search.userID);
 
   const dispatch = useDispatch();
 
@@ -39,12 +43,15 @@ export const HeaderContainer: React.FC = () => {
     dates && dispatch(setLocalUserName(dates));
   }, []);
 
-  const onSearchChange = (value: any) => setSearchValue(value);
+  const onSearchChange = (value: string) => setSearchValue(value);
 
   const onSearchHandler = () => {
-    searchValue &&
-      dispatch(setNewSearchAC(239, { name: "defalts", comment: searchValue })); //#
-    setSearchValue("");
+    if (searchValue) {
+      dispatch(setNewSearchAC(239, { name: "defalts", comment: searchValue })); //# запрос заглушка
+      setSearchValue("");
+      dispatch(setIsSpinAC(true));
+      dispatch(setIsDisaible(true));
+    }
   };
   const onsearchKyeDownHandler = (keyCode: number) => {
     keyCode === 13 && onSearchHandler();
@@ -70,8 +77,10 @@ export const HeaderContainer: React.FC = () => {
   return (
     <Header
       isAuth={isAuth}
-      userID={userID}
+      isSpin={isSpin}
       isNewName={isNewName}
+      isDiseible={isDiseible}
+      userID={userID}
       onSearchChange={onSearchChange}
       onSearchHandler={onSearchHandler}
       onsearchKyeDownHandler={onsearchKyeDownHandler}
