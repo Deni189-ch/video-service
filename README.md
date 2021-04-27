@@ -2,6 +2,7 @@
 склонировать репозиторий
 прописать
 yarn
+
 yarn start
 
 Логин: eve.holt@reqres.ineve.holt@reqres.in
